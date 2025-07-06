@@ -1,3 +1,27 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(211, 211, 211);
+  }
+  
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    scrollbar-color: var(--sb-thumb-color) transparent;
+    margin: 0;
+    padding: 0;
+  }
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
 /* Custom Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
@@ -20,6 +44,17 @@
 }
 
 /* Custom Classes */
+.pdc-04 {
+    padding: 0.4rem;
+}
+.pdc-1 {
+    padding: 1rem;
+}
+.pdc-2 {
+    padding: 2rem;
+}
+
+
 .animate-fade-in {
     animation: fadeIn 0.3s ease-out;
 }

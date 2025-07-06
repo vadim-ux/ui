@@ -33,7 +33,7 @@ tailwind.config = {
                 },
             },
             fontFamily: {
-                sans: ['Inter', 'system-ui', 'sans-serif'],
+                sans: ['Inter','ui-sans-serif', 'system-ui', 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
                 mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
             },
             spacing: {
