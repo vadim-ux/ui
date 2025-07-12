@@ -20,7 +20,8 @@ const categoryInfo = {
     "ebees": { title: "eBees", color: "bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300" },
     "icons": { title: "Icons", color: "bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300" },
     "logos": { title: "Logos", color: "bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300" },
-    "stickers": { title: "Stickers", color: "bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300" }
+    "stickers": { title: "Stickers", color: "bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300" },
+    "templates": { title: "Templates", color: "bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300" }
 };
 
 // Toast component
@@ -312,7 +313,6 @@ function TeamGraphicsLibrary() {
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                                                 </svg>
                                             </button>
-                        
                                             <img
                                                 src="https://raw.githubusercontent.com/vadim-ux/team-graphics-library-official/refs/heads/main/icons/library-logo-ebeejedi.png"
                                                 alt="Team Graphics Library"
@@ -321,28 +321,35 @@ function TeamGraphicsLibrary() {
                                         </div>
                                         {/* Center - Links */}
                                         <div className="hidden md:flex items-center space-x-6">
+                                            <div className="flex items-center divide-x divide-dashed divide-neutral-300 dark:divide-neutral-700">
                                             <a
                                                 href="https://github.com/vadim-ux/team-graphics-library-official"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="font-normal dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                                className="flex items-center font-normal dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors md:pr-3"
                                             >
-                                                Github Library
+                                                <img src="https://raw.githubusercontent.com/vadim-ux/team-graphics-library-official/ed2685db0f395d19861cbd0da04f90ba8a299509/logos/github.svg" alt="Github" className="w-4 h-4 mr-2" />
+                                                <span>Github Library</span>
                                             </a>
                                             <a
                                                 href="https://github.com/vadim-ux/team-graphics-raycast-extension"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="font-normal dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                                                className="flex items-center font-normal dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors md:pl-3"
                                             >
-                                                Raycast Extension
+                                                <img src="https://raw.githubusercontent.com/vadim-ux/team-graphics-library-official/e3a86ec88c39f6ea46d5badb46cf3edef658887e/logos/raycast.svg" alt="Raycast" className="w-4 h-4 mr-2" />
+                                                <span>Raycast Extension</span>
                                             </a>
+                                            </div>
+                                            <div className="flex items-center space-x-4 md:pr-3">
                                             <button
                                             onClick={() => setDarkMode(!darkMode)}
                                             className="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                                         >
                                             {darkMode ? "🔅" : "🌙"}
-                                        </button>
+                                            </button>
+                                            </div>
+                                           
                                         </div>
                                         {/* Right side - Theme toggle */}
                                     </div>
