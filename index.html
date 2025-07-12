@@ -40,14 +40,28 @@
     <div id="root"></div>
 
     <!-- Scripts -->
-<script type="text/babel" src="./js/app.jsx"></script>
-<script>
-    // Hide loading screen when ready
-    document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-            document.getElementById('loading').style.display = 'none';
-        }, 1000);
-    });
-</script>
+    <script type="text/babel" src="./js/app.jsx"></script>
+    
+    <!-- Babel Transform -->
+    <script>
+        // Transform and execute JSX
+        fetch('./js/app.jsx')
+            .then(response => response.text())
+            .then(code => {
+                const transformedCode = Babel.transform(code, {
+                    presets: ['react']
+                }).code;
+                eval(transformedCode);
+                
+                // Hide loading screen
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                }, 500);
+            })
+            .catch(error => {
+                console.error('Error loading app:', error);
+                document.getElementById('loading').innerHTML = '<div class="text-center"><p class="text-red-500">Error loading app</p></div>';
+            });
+    </script>
 </body>
 </html>
