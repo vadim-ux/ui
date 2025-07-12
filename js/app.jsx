@@ -14,35 +14,15 @@ const sampleAssets = [
     }
 ];
 
-// Константы категорий - единое место для управления названиями
-const CATEGORY_TITLES = {
-    "diagrams": "Diagrams",
-    "ebees": "eBees", 
-    "icons": "Icons",
-    "illustrations": "Illustrations",
-    "logos": "Logos",
-    "stickers": "Stickers",
-    "templates": "Templates"
-};
-
-const CATEGORY_COLORS = {
-    "diagrams": "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300",
-    "ebees": "bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300",
-    "icons": "bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300",
-    "illustrations": "bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300",
-    "logos": "bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300",
-    "stickers": "bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300",
-    "templates": "bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300"
-};
-
-// Функция для получения названия категории
-const getCategoryTitle = (category) => {
-    return CATEGORY_TITLES[category] || category.charAt(0).toUpperCase() + category.slice(1);
-};
-
-// Функция для получения цвета категории  
-const getCategoryColor = (category) => {
-    return CATEGORY_COLORS[category] || "bg-gray-50 text-gray-700 dark:bg-gray-800/50 dark:text-gray-300";
+// Category information - ПОЛНЫЙ список всех категорий
+const categoryInfo = {
+    "diagrams": { title: "Diagrams", color: "bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300" },
+    "ebees": { title: "eBees", color: "bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300" },
+    "icons": { title: "Icons", color: "bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-300" },
+    "illustrations": { title: "Illustrations", color: "bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300" },
+    "logos": { title: "Logos", color: "bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300" },
+    "stickers": { title: "Stickers", color: "bg-pink-50 text-pink-700 dark:bg-pink-900/20 dark:text-pink-300" },
+    "templates": { title: "Templates", color: "bg-gray-50 text-gray-700 dark:bg-gray-800/50 dark:text-gray-300" }
 };
 
 // Toast component
