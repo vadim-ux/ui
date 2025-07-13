@@ -2,7 +2,7 @@
 
 A beautiful web interface for browsing and copying SVG graphics from our team library.
 
-🔗 **Live Demo:** https://vadim-ux.github.io/team-graphics-web/
+🔗 **Live Demo:** [vadim-ux.github.io/ui/](https://vadim-ux.github.io/ui/)
 
 ## Features
 - 🔍 Search and filter graphics
