@@ -43,7 +43,7 @@ function Toast({ message, type = 'success', onClose }) {
                 <span className="text-sm font-medium">{message}</span>
                 <button 
                     onClick={onClose}
-                    className="ml-3 text-white/80 hover:text-white transition-colors"
+                    className="ml-3 text-white/80 hover:text-white"
                 >
                     ✕
                 </button>
@@ -57,11 +57,11 @@ function LoadingSkeleton() {
     return (
         <div className="graphics-grid">
             {Array.from({ length: 12 }).map((_, i) => (
-                <div key={i} className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
-                    <div className="aspect-square bg-gray-200 dark:bg-gray-700 shimmer"></div>
+                <div key={i} className="bg-white dark:bg-neutral-800 rounded-xl border border-gray-200 dark:border-neutral-700 overflow-hidden">
+                    <div className="aspect-square bg-gray-200 dark:bg-neutral-700 shimmer"></div>
                     <div className="p-4 space-y-2">
-                        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded shimmer"></div>
-                        <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-2/3 shimmer"></div>
+                        <div className="h-4 bg-gray-200 dark:bg-neutral-700 rounded shimmer"></div>
+                        <div className="h-3 bg-gray-200 dark:bg-neutral-700 rounded w-2/3 shimmer"></div>
                     </div>
                 </div>
             ))}
@@ -83,21 +83,21 @@ function Sidebar({ categories, selectedCategory, onCategorySelect, totalAssets, 
             
             {/* Sidebar - fixed width 224px */}
             <div className={`
-                fixed lg:sticky left-0 h-screen w-48 bg-white dark:bg-gray-900 
-                border-r border-gray-200 dark:border-gray-700 
-                z-40 transform lg:transform-none transition-transform duration-300
+                fixed top-0 md:top-[53px] md:left-0 h-screen md:h-[calc(100vh-63px)] w-full md:w-56 bg-white dark:bg-neutral-900 text-sm opacity-95 backdrop-blur-md 
+                border-b border-neutral-200 dark:border-neutral-800 md:border-r 
+                z-50 transform lg:transform-none 
                 ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             `}>
                 <div className="p-1.5 pt-4 pl-2 pr-3 overflow-y-auto h-full">
                     {/* All categories */}
                     <button
                         onClick={() => onCategorySelect('all')}
-                        className={`
-                            w-full text-left px-3 py-1 rounded-lg transition-all duration-200
+                        className={`text-sm 
+                            w-full text-left px-3 py-1 rounded-lg 
                             flex items-center justify-between mb-2
                             ${selectedCategory === 'all' 
-                                ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white font-medium' 
-                                : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                                ? 'bg-gray-100 text-gray-900 dark:bg-neutral-800 dark:text-white font-medium' 
+                                : 'text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
                             }
                         `}
                     >
@@ -118,22 +118,26 @@ function Sidebar({ categories, selectedCategory, onCategorySelect, totalAssets, 
                                     key={category}
                                     onClick={() => onCategorySelect(category)}
                                     className={`
-                                        w-full text-left px-3 py-1 rounded-lg transition-all duration-200
+                                        w-full text-left px-3 py-1 rounded-lg 
                                         flex items-center justify-between
                                         ${isSelected 
-                                            ? 'bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white font-medium'
-                                            : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                                            ? 'bg-gray-100 text-gray-900 dark:bg-neutral-800 dark:text-white font-medium'
+                                            : 'text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50'
                                         }
                                     `}
                                 >
                                     <span>{info.title}</span>
-                                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                                    <span className="px-2.5 py-0.5 rounded-full font-medium bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-800 text-neutral-600 dark:text-neutral-400 hidden font-mono text-xs md:inline">
                                         {count}
                                     </span>
                                 </button>
                             );
                         })}
                     </div>
+                </div>
+                {/* Footer note */}
+                <div className="absolute bottom-4 left-0 w-full text-center text-xs text-gray-400 dark:text-gray-500 select-none">
+                    <a href="https://svgl.app/" target="_blank" rel="noopener noreferrer">♥︎ Inspired by SVGL project</a>
                 </div>
             </div>
         </>
@@ -297,10 +301,10 @@ function TeamGraphicsLibrary() {
 
     return (
                     <div className="app-wrapper">
-                        <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-                        <div className="min-h-screen dark:bg-gray-950 bg-white">
+                        <div className="min-h-screen bg-gray-50 dark:bg-neutral-900">
+                        <div className="min-h-screen dark:bg-neutral-900 bg-white">
                             {/* Header - full width */}
-                            <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                            <header className="sticky top-0 z-50 bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-700">
                                 <div className="p-1.5">
                                     <div className="flex items-center justify-between">
                                         {/* Left side - Logo */}
@@ -326,16 +330,24 @@ function TeamGraphicsLibrary() {
                                                 href="https://github.com/vadim-ux/team-graphics-library-official"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center font-normal dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors md:pr-3"
+                                                className="flex items-center font-normal dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white md:pr-3"
                                             >
-                                                <img src="https://raw.githubusercontent.com/vadim-ux/team-graphics-library-official/ed2685db0f395d19861cbd0da04f90ba8a299509/logos/github.svg" alt="Github" className="w-4 h-4 mr-2" />
+                                                <svg
+                                                className="w-4 h-4 mr-2 text-gray-800 dark:text-white"
+                                                viewBox="0 0 14 14"
+                                                fill="currentColor"
+                                                aria-hidden="true"
+                                                >
+                                                {/* из файла github.svg скопируйте только <path …/> */}
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.00578 0C3.13177 0 0 3.20834 0 7.17747C0 10.3502 2.00663 13.0359 4.79036 13.9864C5.1384 14.0578 5.26587 13.832 5.26587 13.642C5.26587 13.4755 5.2544 12.9053 5.2544 12.3109C3.30557 12.7388 2.89974 11.4554 2.89974 11.4554C2.58655 10.6235 2.1225 10.4097 2.1225 10.4097C1.48465 9.97004 2.16896 9.97004 2.16896 9.97004C2.87651 10.0176 3.24778 10.7068 3.24778 10.7068C3.87401 11.7999 4.88314 11.4911 5.28911 11.3009C5.34705 10.8375 5.53275 10.5166 5.72993 10.3384C4.17559 10.172 2.54023 9.55412 2.54023 6.79714C2.54023 6.01285 2.81842 5.37119 3.25924 4.87214C3.1897 4.69393 2.94605 3.95704 3.32894 2.97077C3.32894 2.97077 3.92047 2.78061 5.25426 3.70752C5.8253 3.55041 6.4142 3.47048 7.00578 3.46981C7.59731 3.46981 8.20032 3.55308 8.75715 3.70752C10.0911 2.78061 10.6826 2.97077 10.6826 2.97077C11.0655 3.95704 10.8217 4.69393 10.7522 4.87214C11.2046 5.37119 11.4713 6.01285 11.4713 6.79714C11.4713 9.55412 9.83597 10.1601 8.27001 10.3384C8.52527 10.5642 8.74554 10.9919 8.74554 11.6693C8.74554 12.6318 8.73406 13.4042 8.73406 13.6419C8.73406 13.832 8.86169 14.0578 9.20959 13.9865C11.9933 13.0357 14 10.3502 14 7.17747C14.0114 3.20834 10.8682 0 7.00578 0Z"/>
+                                                </svg>
                                                 <span>Github Library</span>
                                             </a>
                                             <a
                                                 href="https://github.com/vadim-ux/team-graphics-raycast-extension"
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className="flex items-center font-normal dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors md:pl-3"
+                                                className="flex items-center font-normal dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white md:pl-3"
                                             >
                                                 <img src="https://raw.githubusercontent.com/vadim-ux/team-graphics-library-official/e3a86ec88c39f6ea46d5badb46cf3edef658887e/logos/raycast.svg" alt="Raycast" className="w-4 h-4 mr-2" />
                                                 <span>Raycast Extension</span>
@@ -367,9 +379,9 @@ function TeamGraphicsLibrary() {
                                     onClose={() => setSidebarOpen(false)}
                                 />
                                 {/* Main Content - right column */}
-                                <div className="flex-1">
-                                    {/* Search */}
-                                    <div className="relative w-full">
+                                <div className="flex-1 ml-0 pb-6 md:ml-56">
+                                    {/* Search (sticky) */}
+                                    <div className="relative w-full sticky top-[53px] z-20 bg-white/90 backdrop-blur-md dark:bg-neutral-900/90">
                                         <div className="relative">
                                             <input
                                                 ref={searchInputRef}
@@ -377,7 +389,7 @@ function TeamGraphicsLibrary() {
                                                 placeholder="Search graphics..."
                                                 value={searchTerm}
                                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                                className="w-full px-4 py-3 pl-10 bg-white dark:bg-gray-800 border-b border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400  focus:ring-blue-500/30 focus:border-blue-500 focus:border-transparent transition-all"
+                                                className="w-full px-4 py-3 pl-10 bg-white dark:bg-neutral-800 border-b border-gray-300 dark:border-neutral-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400  focus:ring-blue-500/30 focus:border-blue-500 focus:border-transparent"
                                             />
                                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -392,7 +404,7 @@ function TeamGraphicsLibrary() {
                                             <div></div> {/* Empty right side */}
                                             <button
                                                 onClick={() => setSortBy(sortBy === "a-z" ? "latest" : "a-z")}
-                                                className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                                                className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800"
                                             >
                                                 {sortBy === "a-z" ? "Sort A-Z" : "Sort by latest"}
                                             </button>
@@ -417,7 +429,7 @@ function TeamGraphicsLibrary() {
                                                 {searchTerm && (
                                                     <button
                                                         onClick={() => setSearchTerm('')}
-                                                        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors btn-primary"
+                                                        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                                                     >
                                                         Clear search
                                                     </button>
@@ -429,15 +441,15 @@ function TeamGraphicsLibrary() {
                                                 {filteredAndSortedAssets.map((asset, index) => (
                                                     <div
                                                         key={asset.id}
-                                                        className="group bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 overflow-hidden"
+                                                        className="group bg-white dark:bg-neutral-800 rounded-md border border-gray-200 dark:border-neutral-700 overflow-hidden"
                                                         style={{ animationDelay: `${index * 50}ms` }}
                                                     >
                                                         {/* Image Container */}
-                                                        <div className="relative aspect-square bg-gray-50 dark:bg-gray-700 p-12 flex items-center justify-center">
+                                                        <div className="relative aspect-square bg-checkerboard p-12 flex items-center justify-center">
                                                             <img
                                                                 src={asset.url}
                                                                 alt={asset.name}
-                                                                className="max-w-full max-h-full object-contain transition-transform duration-200 group-hover:scale-110"
+                                                                className="max-w-full max-h-full object-contain"
                                                                 loading="lazy"
                                                                 onError={(e) => {
                                                                     e.target.style.display = 'none';
@@ -450,54 +462,57 @@ function TeamGraphicsLibrary() {
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                                 </svg>
                                                             </div>
-                                                            {/* Action Overlay */}
-                                                            <div className="absolute inset-0  opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center">
-                                                                <div className="flex space-x-2">
-                                                                    <button
-                                                                        onClick={() => copySvg(asset)}
-                                                                        className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition-all duration-200 btn-primary shadow-lg"
-                                                                        title="Copy SVG Code"
-                                                                    >
-                                                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                                                        </svg>
-                                                                    </button>
-                                                                    <button
-                                                                        onClick={() => copyUrl(asset)}
-                                                                        className="bg-gray-600 hover:bg-gray-700 text-white p-3 rounded-lg transition-all duration-200 btn-primary shadow-lg"
-                                                                        title="Copy URL"
-                                                                    >
-                                                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                                                                        </svg>
-                                                                    </button>
-                                                                    <a
-                                                                        href={asset.svgUrl}
-                                                                        target="_blank"
-                                                                        rel="noopener noreferrer"
-                                                                        className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg transition-all duration-200 btn-primary shadow-lg"
-                                                                        title="Open SVG"
-                                                                    >
-                                                                        <svg className="w-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                                        </svg>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
                                                         </div>
                         
                                                         {/* Content */}
-                                                        <div className="p-4">
-                                                            <h3 className="font-semibold text-gray-900 dark:text-white truncate mb-1">
-                                                                {asset.name}
-                                                            </h3>
-                                                            <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                                                                <span>{asset.size}</span>
-                                                                <span className="text-xs text-gray-400 dark:text-gray-500">
-                                                                    {categoryInfo[asset.category]?.title || asset.category}
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                                        <div className="p-4 relative" style={{minHeight: '68px'}}>
+                                                             {/* Text content - fades out on hover */}
+                                                             <div className="group-hover:opacity-0">
+                                                                 <h2 className="font-semibold text-gray-900 text-sm dark:text-white truncate mb-1">
+                                                                     {asset.name}
+                                                                 </h2>
+                                                                 <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                                                                     <span className="text-xs text-gray-400 dark:text-gray-500">
+                                                                         {categoryInfo[asset.category]?.title || asset.category}
+                                                                     </span>
+                                                                 </div>
+                                                             </div>
+
+                                                             {/* Action icons - fade in on hover */}
+                                                             <div className="absolute inset-0 p-4 opacity-0 group-hover:opacity-100 flex items-center justify-center">
+                                                                 <div className="flex space-x-2">
+                                                                     <button
+                                                                         onClick={() => copySvg(asset)}
+                                                                         className="hover:bg-gray-100/80 dark:hover:bg-gray-300/10 text-gray-500 dark:text-gray-400 p-3 rounded-[0.4vw]"
+                                                                         title="Copy SVG Code"
+                                                                     >
+                                                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                                         </svg>
+                                                                     </button>
+                                                                     <button
+                                                                         onClick={() => copyUrl(asset)}
+                                                                         className="hover:bg-gray-100/80 dark:hover:bg-gray-300/10 text-gray-500 dark:text-gray-400 p-3 rounded-[0.4vw]"
+                                                                         title="Copy URL"
+                                                                     >
+                                                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                                                         </svg>
+                                                                     </button>
+                                                                     <a
+                                                                         href={asset.svgUrl}
+                                                                         target="_blank"
+                                                                         rel="noopener noreferrer"
+                                                                         className="hover:bg-gray-100/80 dark:hover:bg-gray-300/10 text-gray-500 dark:text-gray-400 p-3 rounded-[0.4vw]"
+                                                                         title="Open SVG"
+                                                                     >
+                                                                         <svg className="w-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                                         </svg>
+                                                                     </a>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
                                                     </div>
                                                 ))}
                                             </div>
