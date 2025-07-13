@@ -318,7 +318,7 @@ function TeamGraphicsLibrary() {
                                         {/* Left side - Logo */}
                                         <div className="flex items-center space-x-4">
                                             <button
-                                                onClick={() => setSidebarOpen(true)}
+                                                onClick={() => setSidebarOpen(prev => !prev)}
                                                 className="lg:hidden p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
                                             >
                                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -375,10 +375,35 @@ function TeamGraphicsLibrary() {
                                     </div>
                                 </div>
                             </header>
+                            {/* Mobile horizontal categories */}
+                            <nav className="md:hidden flex items-center space-x-2 overflow-x-auto px-4 py-2 border-b border-neutral-200 dark:border-neutral-700 backdrop-blur-md bg-white/90 dark:bg-neutral-900/90">
+                                {/* All */}
+                                <button
+                                    onClick={() => setSelectedCategory('all')}
+                                    className={`flex-shrink-0 px-3 py-1 rounded-lg text-sm whitespace-nowrap ${selectedCategory === 'all' ? 'bg-gray-100 text-gray-900 dark:bg-neutral-800 dark:text-white font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50'}`}
+                                >
+                                    All
+                                </button>
+                                {Object.entries(categories).map(([cat, count]) => {
+                                    const info = categoryInfo[cat] || { title: cat };
+                                    const isSel = selectedCategory === cat;
+                                    return (
+                                        <button
+                                            key={cat}
+                                            onClick={() => setSelectedCategory(cat)}
+                                            className={`flex-shrink-0 px-3 py-1 rounded-lg text-sm whitespace-nowrap ${isSel ? 'bg-gray-100 text-gray-900 dark:bg-neutral-800 dark:text-white font-medium' : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50'}`}
+                                        >
+                                            {info.title}
+                                        </button>
+                                    );
+                                })}
+                            </nav>
+
                             {/* Main layout - 2 columns */}
                             <div className="flex">
                                 {/* Sidebar */}
                                 <Sidebar
+                                    className="hidden md:block"
                                     categories={categories}
                                     selectedCategory={selectedCategory}
                                     onCategorySelect={setSelectedCategory}
@@ -387,7 +412,7 @@ function TeamGraphicsLibrary() {
                                     onClose={() => setSidebarOpen(false)}
                                 />
                                 {/* Main Content - right column */}
-                                <div className="flex-1 ml-0 pb-6 md:ml-56">
+                                <div className="flex-1 ml-0 pb-6 lg:ml-56">
                                     {/* Search (sticky) */}
                                     <div className="relative w-full sticky top-[53px] z-20 bg-white/90 backdrop-blur-md dark:bg-neutral-900/90">
                                         <div className="relative">
