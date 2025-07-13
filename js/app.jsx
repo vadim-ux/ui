@@ -84,7 +84,7 @@ function Sidebar({ categories, selectedCategory, onCategorySelect, totalAssets, 
             {/* Sidebar - fixed width 224px */}
             <div className={`
                 fixed top-0 md:top-[53px] md:left-0 h-screen md:h-[calc(100vh-63px)] w-full md:w-56 bg-white dark:bg-neutral-900 text-sm opacity-95 backdrop-blur-md 
-                border-b border-neutral-200 dark:border-neutral-800 md:border-r 
+                border-b border-neutral-200 dark:border-neutral-700 md:border-r 
                 z-50 transform lg:transform-none 
                 ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             `}>
@@ -149,7 +149,7 @@ function TeamGraphicsLibrary() {
     const [assets, setAssets] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("all");
-    const [sortBy, setSortBy] = useState("a-z"); // "a-z" or "latest"
+    const [sortBy, setSortBy] = useState("a-z"); // "a-z", "latest", or "isovalent"
     const [darkMode, setDarkMode] = useState(() => {
         if (typeof window !== 'undefined') {
             return localStorage.getItem('darkMode') === 'true' || 
@@ -241,6 +241,14 @@ function TeamGraphicsLibrary() {
         } else if (sortBy === "latest") {
             // For now, reverse order as "latest" - you can implement proper date sorting
             filtered.reverse();
+        } else if (sortBy === "isovalent") {
+            filtered.sort((a, b) => {
+                const aIso = a.tags.includes("isovalent");
+                const bIso = b.tags.includes("isovalent");
+                if (aIso && !bIso) return -1; // a comes first
+                if (!aIso && bIso) return 1;  // b comes first
+                return a.name.localeCompare(b.name); // otherwise alphabetical
+            });
         }
 
         return filtered;
@@ -409,10 +417,10 @@ function TeamGraphicsLibrary() {
                                         <div className="flex items-center justify-between mb-4">
                                             <div></div> {/* Empty right side */}
                                             <button
-                                                onClick={() => setSortBy(sortBy === "a-z" ? "latest" : "a-z")}
+                                                onClick={() => setSortBy(sortBy === "a-z" ? "latest" : sortBy === "latest" ? "isovalent" : "a-z")}
                                                 className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 pr-2"
                                             >
-                                                {sortBy === "a-z" ? "Sort A-Z" : "Sort by latest"}
+                                                {sortBy === "a-z" ? "Sort A-Z" : sortBy === "latest" ? "Sort by latest" : "Isovalent first"}
                                             </button>
                         
                                         </div>
