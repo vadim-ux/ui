@@ -97,7 +97,7 @@ function Sidebar({ categories, selectedCategory, onCategorySelect, totalAssets, 
                             flex items-center justify-between mb-2
                             ${selectedCategory === 'all' 
                                 ? 'bg-gray-100 text-gray-900 dark:bg-neutral-800 dark:text-white font-medium' 
-                                : 'text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                                : 'text-sm text-neutral-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50'
                             }
                         `}
                     >
@@ -122,7 +122,7 @@ function Sidebar({ categories, selectedCategory, onCategorySelect, totalAssets, 
                                         flex items-center justify-between
                                         ${isSelected 
                                             ? 'bg-gray-100 text-gray-900 dark:bg-neutral-800 dark:text-white font-medium'
-                                            : 'text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50'
+                                            : 'text-sm text-neutral-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-neutral-800/50'
                                         }
                                     `}
                                 >
@@ -136,7 +136,7 @@ function Sidebar({ categories, selectedCategory, onCategorySelect, totalAssets, 
                     </div>
                 </div>
                 {/* Footer note */}
-                <div className="absolute bottom-4 left-0 w-full text-center text-xs text-gray-400 dark:text-gray-500 select-none">
+                <div className="absolute bottom-4 left-0 w-full text-center text-xs text-neutral-400 dark:text-neutral-500 select-none">
                     <a href="https://svgl.app/" target="_blank" rel="noopener noreferrer">♥︎ Inspired by SVGL project</a>
                 </div>
             </div>
@@ -356,7 +356,7 @@ function TeamGraphicsLibrary() {
                                             <div className="flex items-center space-x-4 md:pr-3">
                                             <button
                                             onClick={() => setDarkMode(!darkMode)}
-                                            className="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                            className="p-2 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
                                         >
                                             {darkMode ? "🔅" : "🌙"}
                                             </button>
@@ -383,18 +383,24 @@ function TeamGraphicsLibrary() {
                                     {/* Search (sticky) */}
                                     <div className="relative w-full sticky top-[53px] z-20 bg-white/90 backdrop-blur-md dark:bg-neutral-900/90">
                                         <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                </svg>
+                                            </div>
                                             <input
                                                 ref={searchInputRef}
                                                 type="text"
                                                 placeholder="Search graphics..."
                                                 value={searchTerm}
                                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                                className="w-full px-4 py-3 pl-10 bg-white dark:bg-neutral-800 border-b border-gray-300 dark:border-neutral-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400  focus:ring-blue-500/30 focus:border-blue-500 focus:border-transparent"
+                                                className="w-full px-4 py-3 pl-10 bg-white dark:bg-neutral-800 border-b border-neutral-300 dark:border-neutral-600 text-gray-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400  focus:border-transparent"
                                             />
-                                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                                </svg>
+                                            <div className="absolute inset-y-0 right-0 flex items-center pr-6 text-neutral-500">
+                                                <div className="flex h-full items-center pointer-events-none gap-x-1 font-mono">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-command"><path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3"></path></svg>
+                                                <span>K</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -404,7 +410,7 @@ function TeamGraphicsLibrary() {
                                             <div></div> {/* Empty right side */}
                                             <button
                                                 onClick={() => setSortBy(sortBy === "a-z" ? "latest" : "a-z")}
-                                                className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800"
+                                                className="text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-800 pr-2"
                                             >
                                                 {sortBy === "a-z" ? "Sort A-Z" : "Sort by latest"}
                                             </button>
@@ -471,8 +477,8 @@ function TeamGraphicsLibrary() {
                                                                  <h2 className="font-semibold text-gray-900 text-sm dark:text-white truncate mb-1">
                                                                      {asset.name}
                                                                  </h2>
-                                                                 <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                                                                     <span className="text-xs text-gray-400 dark:text-gray-500">
+                                                                 <div className="flex items-center justify-between text-sm text-neutral-500 dark:text-neutral-400">
+                                                                     <span className="text-xs text-neutral-400 dark:text-neutral-500">
                                                                          {categoryInfo[asset.category]?.title || asset.category}
                                                                      </span>
                                                                  </div>
@@ -483,7 +489,7 @@ function TeamGraphicsLibrary() {
                                                                  <div className="flex space-x-2">
                                                                      <button
                                                                          onClick={() => copySvg(asset)}
-                                                                         className="hover:bg-gray-100/80 dark:hover:bg-gray-300/10 text-gray-500 dark:text-gray-400 p-3 rounded-[0.4vw]"
+                                                                         className="hover:bg-neutral-100/80 dark:hover:bg-neutral-300/10 text-neutral-500 dark:text-neutral-400 p-3 rounded-[0.4vw]"
                                                                          title="Copy SVG Code"
                                                                      >
                                                                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -492,7 +498,7 @@ function TeamGraphicsLibrary() {
                                                                      </button>
                                                                      <button
                                                                          onClick={() => copyUrl(asset)}
-                                                                         className="hover:bg-gray-100/80 dark:hover:bg-gray-300/10 text-gray-500 dark:text-gray-400 p-3 rounded-[0.4vw]"
+                                                                         className="hover:bg-neutral-100/80 dark:hover:bg-neutral-300/10 text-neutral-500 dark:text-neutral-400 p-3 rounded-[0.4vw]"
                                                                          title="Copy URL"
                                                                      >
                                                                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -503,7 +509,7 @@ function TeamGraphicsLibrary() {
                                                                          href={asset.svgUrl}
                                                                          target="_blank"
                                                                          rel="noopener noreferrer"
-                                                                         className="hover:bg-gray-100/80 dark:hover:bg-gray-300/10 text-gray-500 dark:text-gray-400 p-3 rounded-[0.4vw]"
+                                                                         className="hover:bg-neutral-100/80 dark:hover:bg-neutral-300/10 text-neutral-500 dark:text-neutral-400 p-3 rounded-[0.4vw]"
                                                                          title="Open SVG"
                                                                      >
                                                                          <svg className="w-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
