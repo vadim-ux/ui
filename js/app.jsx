@@ -484,7 +484,7 @@ function TeamGraphicsLibrary() {
                                                         style={{ animationDelay: `${index * 50}ms` }}
                                                     >
                                                         {/* Image Container */}
-                                                        <div className="relative aspect-square bg-checkerboard p-12 flex items-center justify-center">
+                                                        <div className="relative aspect-square bg-checkerboard p-6 flex items-center justify-center">
                                                             <img
                                                                 src={asset.url}
                                                                 alt={asset.name}
