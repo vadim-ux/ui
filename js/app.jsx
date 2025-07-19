@@ -10,7 +10,8 @@ const sampleAssets = [
         tags: ["mascot", "bee", "main"],
         url: "https://raw.githubusercontent.com/vadim-ux/team-graphics-library-official/main/png/ebees/ebee-main.png",
         svgUrl: "https://raw.githubusercontent.com/vadim-ux/team-graphics-library-official/main/svg/ebees/ebee-main.svg",
-        size: "512x512"
+        size: "512x512",
+        hasSvg: true
     }
 ];
 
@@ -184,7 +185,8 @@ function TeamGraphicsLibrary() {
                     tags: asset.tags || [],
                     url: asset.url,
                     svgUrl: asset.svgUrl || asset.url.replace('/png/', '/svg/').replace('.png', '.svg'),
-                    size: asset.size || 'Unknown'
+                    size: asset.size || 'Unknown',
+                    hasSvg: asset.hasSvg
                 }));
                 
                 setAssets(transformedAssets);
@@ -513,6 +515,9 @@ function TeamGraphicsLibrary() {
                                                                  <div className="flex items-center justify-between text-sm text-neutral-500 dark:text-neutral-400">
                                                                      <span className="text-xs text-neutral-400 dark:text-neutral-500">
                                                                          {categoryInfo[asset.category]?.title || asset.category}
+                                                                         {!asset.hasSvg && (
+                                                                           <span className="text-orange-500 text-xs ml-2">Only PNG</span>
+                                                                         )}
                                                                      </span>
                                                                  </div>
                                                              </div>
@@ -520,17 +525,21 @@ function TeamGraphicsLibrary() {
                                                              {/* Action icons - fade in on hover */}
                                                              <div className="absolute inset-0 p-4 opacity-0 group-hover:opacity-100 flex items-center justify-center">
                                                                  <div className="flex space-x-2">
+                                                                     {/* Кнопка копирования SVG только если есть SVG */}
+                                                                     {asset.hasSvg && (
+                                                                         <button
+                                                                             onClick={() => copySvg(asset)}
+                                                                             className="hover:bg-neutral-100/80 dark:hover:bg-neutral-300/10 text-neutral-500 dark:text-neutral-400 p-3 rounded-[0.4vw]"
+                                                                             title="Copy SVG Code"
+                                                                         >
+                                                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                                             </svg>
+                                                                         </button>
+                                                                     )}
+                                                                     {/* Кнопка копирования ссылки (теперь всегда копирует PNG) */}
                                                                      <button
-                                                                         onClick={() => copySvg(asset)}
-                                                                         className="hover:bg-neutral-100/80 dark:hover:bg-neutral-300/10 text-neutral-500 dark:text-neutral-400 p-3 rounded-[0.4vw]"
-                                                                         title="Copy SVG Code"
-                                                                     >
-                                                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                                                         </svg>
-                                                                     </button>
-                                                                     <button
-                                                                         onClick={() => copyUrl(asset)}
+                                                                         onClick={() => navigator.clipboard.writeText(asset.url).then(() => showToast(`🔗 ${asset.name} PNG URL copied!`)).catch(() => showToast("❌ Failed to copy PNG URL", 'error'))}
                                                                          className="hover:bg-neutral-100/80 dark:hover:bg-neutral-300/10 text-neutral-500 dark:text-neutral-400 p-3 rounded-[0.4vw]"
                                                                          title="Copy URL"
                                                                      >
@@ -538,14 +547,15 @@ function TeamGraphicsLibrary() {
                                                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                                                          </svg>
                                                                      </button>
+                                                                     {/* Ссылка на файл: SVG если есть, PNG если нет */}
                                                                      <a
-                                                                         href={asset.svgUrl}
+                                                                         href={asset.hasSvg ? asset.svgUrl : asset.url}
                                                                          target="_blank"
                                                                          rel="noopener noreferrer"
                                                                          className="hover:bg-neutral-100/80 dark:hover:bg-neutral-300/10 text-neutral-500 dark:text-neutral-400 p-3 rounded-[0.4vw]"
-                                                                         title="Open SVG"
+                                                                         title={asset.hasSvg ? "Open SVG" : "Open PNG"}
                                                                      >
-                                                                         <svg className="w-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                                                                          </svg>
                                                                      </a>
